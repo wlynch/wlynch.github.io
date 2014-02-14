@@ -1,0 +1,7 @@
+exclude: ["README.md", "CNAME"]
+
+name: wlyn.ch
+markdown: redcarpet
+pygments: true
+
+permalink: /:categories/:title/
