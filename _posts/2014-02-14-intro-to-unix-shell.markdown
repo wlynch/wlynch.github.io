@@ -27,7 +27,7 @@ Windows does have cmd and PowerShell, Windows is a very different operating syst
 very different utilities. We will be focusing on commands found commonly on Unix systems.
 
 ### How do I create an iLab account
-https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/
+[https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/]
 
 Problems? Email help@cs.rutgers.edu
 
@@ -293,12 +293,17 @@ For example:
 - `ftp/sftp` : Get/put file from/to remote server via FTP.
 - `scp` : Secure copy. Similar to scp, but can transfer multiple files/directories at once.
 - `ssh` : Connect to remote host via SSH.
-- `pdsh` : ssh on steroids. See http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html
+- `pdsh` : ssh on steroids. See [http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html]
 
 ### File compression
 - `tar`
 - `zip/unzip`
 - `bzip2`
+
+### String manipulation
+- `cut`
+- `awk`
+- `sed`
 
 ### Misc
 - `echo` : Print to stdout
@@ -321,6 +326,13 @@ stream redirection. You can do this by appending these to the end of your comman
 ### Command substitution
 You can nest commands within each other by nesting them within \`\`. For example:
 `ifconfig > `hostname`.txt`
+
+## Chaining commands
+`&&` and `||` can be used to chain commands together depending on the result of the previous
+command. `&&` means to only run the next command if the previous command succeeds. `||` means
+to only run the next command if the previous command failed. For example:
+- `javac HelloWorld.java && java HelloWorld`
+- `w | grep \`whoami\` || echo "User not found"`
 
 ## Environment variables
 Something I hear a lot is "How does the shell know what to run?" The answer to this question
@@ -345,7 +357,20 @@ While you can change the path, these changes won't persist after you close your 
 What you need to do is create a configuration file that tells your shell what to do when
 it starts up. This configuration file varies for each shell. For now, let's focus on bash.
 
-###.bashrc
+Bash uses 2 main files to set up your environment. In this process, it looks for user defined
+settings in `~/.bashrc` and `~/.bash_profile`.
 
-###.bash_profile
+These files are shell scripts. They automatically run each line as if you typed them out
+yourself. This makes them idea to configure your enviroment variables and add 
 
+### bashrc
+bashrc is the file that bash references for interactive, non-login shells. This includes all
+bash shells that are started up when you are already logged in. For example, when you start a 
+terminal when you are logged in graphically, this is an interactive non-login shell.
+
+### bash_profile
+bash_profile is ran for login shells. When you connect remotely to a machine with SSH 
+(or an SSH application), the original shell you open is a login shell.
+
+It is common to `source` `~/.bashrc` from `~/.bash_profile`. `source` tells your shell to treat
+the contents of the argument as if it were part of the current file.
