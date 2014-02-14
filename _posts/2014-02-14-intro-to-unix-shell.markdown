@@ -8,6 +8,8 @@ A shell is a way to interact with your operating system via a text based system.
 This allows you to do useful things like fast searches and scripting. Since it is
 a minimal interface, it makes it great to use across network connections.
 
+There are many types of shells including bash, csh, tcsh, and zsh.
+
 ### Shell vs. Terminal
 People often ask what the difference between a shell and a terminal is. A shell is the actual
 interface between you and your OS, the terminal is the (GUI) application that surrounds it.
@@ -289,6 +291,7 @@ For example:
 - `ifconfig` : See/change network information for your machine.
 - `hostname` : Get/set the hostname of your current machine
 - `ftp/sftp` : Get/put file from/to remote server via FTP.
+- `scp` : Secure copy. Similar to scp, but can transfer multiple files/directories at once.
 - `ssh` : Connect to remote host via SSH.
 - `pdsh` : ssh on steroids. See http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html
 
@@ -338,3 +341,11 @@ WARNING: Only add trusted folders to your path. Otherwise someone could make a b
 with a common name that you could accidentally run without even knowing!
 
 ## Shell configuration
+While you can change the path, these changes won't persist after you close your shell.
+What you need to do is create a configuration file that tells your shell what to do when
+it starts up. This configuration file varies for each shell. For now, let's focus on bash.
+
+###.bashrc
+
+###.bash_profile
+
