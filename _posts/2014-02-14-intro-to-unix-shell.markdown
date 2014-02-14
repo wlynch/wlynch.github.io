@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to the Unix shell
 ---
-## FAQ
+# FAQ
 ### What's a shell?
 A shell is a way to interact with your operating system via a text based system. 
 This allows you to do useful things like fast searches and scripting. Since it is
@@ -39,7 +39,7 @@ or Putty.
 You will probably see me using these terms interchangably. The explicit is that you enter a 
 command in the shell that tells your OS what program to run and how to run it.
 
-## Running commands
+# Running commands
 Simply open up a shell, type a command, and hit enter. It is that simple. For example:
 `echo "Hello World!"`.
 
@@ -62,7 +62,7 @@ Arguments are user defined information that is passed to commands an flags. They
 follow the command/flag. For example, in `ls /usr/local`, `/usr/local` is the argument.
 Depending on the command, you can give 0 to many arguments.
 
-## Getting help
+# Getting help
 Memorizing all of this flags and how to use each command will come in time. You will
 not know them all.
 
@@ -70,7 +70,7 @@ For most commands, there is usually a man (manual) page associated with it.
 To read the man page of a command, simply use `man command`. This will give you 
 more information on how to run a program.
 
-## Paths
+# Paths
 Paths are the "addresses" of files and folders. There are 2 types of paths: 
 absolute and relative. Both can be used in conjunction with any command that takes in 
 a file or folder as an argument.
@@ -91,7 +91,7 @@ example:
 - `.` : Your current directory
 - `..` : The parent of your current directory
 
-## Basic Navigation
+# Basic Navigation
 - `pwd` : print working directory
 - `ls` : list
 	
@@ -107,7 +107,7 @@ example:
 	- `cd` : go to home directory
 	- `cd -` : go to the last directory
 
-## Reading files
+# Reading files
 - `cat file` : Print out file
 - `less file` : Print out file, with scrolling
 
@@ -115,7 +115,7 @@ example:
 	Use `/` to search a file in less. Use `n` to go to the next search term in the file
 	and `N` for the previous.
 
-## Editing files
+# Editing files
 - `vim`
 - `emacs`
 
@@ -129,7 +129,7 @@ I am particular to vim, so we will briefly go over the basics.
 - To save, enter `:w` in command mode
 - To exit, enter `:q` in command mode
 
-## Permissions
+# Permissions
 To view permissions of a file or directory, use `ls -l`. You should see something like:
 
 	total 5972
@@ -218,7 +218,7 @@ For example:
 `chmod ug+r example.txt` will add the read permission for the user and group 
 (if it didn't already exist).
 
-## File/directory manipulation
+# File/directory manipulation
 - `touch` : Create a file / update time of access
 - `mkdir` : Make a directory
 
@@ -258,7 +258,7 @@ For example:
 	of the file. You can think of this as a traditional shortcut. Soft links are also called
 	symbolic links or "symlinks". You can create a symlink with the `-s` flag.
 
-## Other useful commands
+# Other useful commands
 ### Disk usage
 - `du` : (disk usage stats) Show sizes of files
 - `df` : (disk free stats) Show drive disk usage.
@@ -310,7 +310,7 @@ For example:
 - `sleep` : Do nothing for x seconds
 - `alias` : Remap one command to another
 
-## Redirection
+# Redirection
 You can manipulate stdin (input) as well as stdout and stderr (output) to your commands via 
 stream redirection. You can do this by appending these to the end of your command:
 
@@ -327,14 +327,14 @@ stream redirection. You can do this by appending these to the end of your comman
 You can nest commands within each other by nesting them within \`\`. For example:
 `ifconfig > `hostname`.txt`
 
-## Chaining commands
+# Chaining commands
 `&&` and `||` can be used to chain commands together depending on the result of the previous
 command. `&&` means to only run the next command if the previous command succeeds. `||` means
 to only run the next command if the previous command failed. For example:
 - `javac HelloWorld.java && java HelloWorld`
 - `w | grep \`whoami\` || echo "User not found"`
 
-## Environment variables
+# Environment variables
 Something I hear a lot is "How does the shell know what to run?" The answer to this question
 is environment variables.
 
@@ -352,7 +352,7 @@ you can start adding your own programs to your path.
 WARNING: Only add trusted folders to your path. Otherwise someone could make a bad program 
 with a common name that you could accidentally run without even knowing!
 
-## Shell configuration
+# Shell configuration
 While you can change the path, these changes won't persist after you close your shell.
 What you need to do is create a configuration file that tells your shell what to do when
 it starts up. This configuration file varies for each shell. For now, let's focus on bash.
