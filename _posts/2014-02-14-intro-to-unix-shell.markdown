@@ -2,7 +2,6 @@
 layout: post
 title: Introduction to the Unix shell
 ---
-#Test
 ## FAQ
 ### What's a shell?
 A shell is a way to interact with your operating system via a text based system. 
@@ -15,7 +14,8 @@ interface between you and your OS, the terminal is the (GUI) application that su
 
 Generally you can use either interchangably and people will know what you are talking about.
 
-#### Common Terminals:
+####Common Terminals:
+
 - Mac: Terminal, iTerm2
 - Linux/other Unix: xterm, gnome-terminal
 
@@ -43,6 +43,7 @@ Simply open up a shell, type a command, and hit enter. It is that simple. For ex
 
 If you get an error saying something along the lines of "command not found", then this
 usually means:
+
 1. The command is not installed on the machine you are using
 2. Your environment is misconfigured. (more on this later)
 
@@ -75,6 +76,7 @@ a file or folder as an argument.
 
 ###Absolute Paths
 Absolute paths are paths that start from /, the root folder. For example:
+
 - /home/wlynch/
 - /usr/local/bin/python
 - /var/log/messages/
@@ -82,6 +84,7 @@ Absolute paths are paths that start from /, the root folder. For example:
 ### Relative Paths
 Relative paths are paths that start relative to your current position. For
 example:
+
 - ~ : Your home directory
 - ~user : user's home directory
 - . : Your current directory
@@ -92,13 +95,12 @@ example:
 - ls : list
  
 	Common options:
-	- -a : Show all files (even hidden)
+- -a : Show all files (even hidden)
 	- -l : List in long format
 	- -h : Use human readable sizes (useful with -l)
 	- -R : Recursively list.
 	- -d : List the directory, not its contents
 - cd : change directory
-
 	Special uses:
 	- cd : go to home directory
 	- cd - : go to the last directory
