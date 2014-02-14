@@ -16,7 +16,7 @@ interface between you and your OS, the terminal is the (GUI) application that su
 
 Generally you can use either interchangably and people will know what you are talking about.
 
-####Common Terminals:
+#### Common Terminals:
 
 - Mac: Terminal, iTerm2
 - Linux/other Unix: xterm, gnome-terminal
@@ -365,8 +365,8 @@ yourself. This makes them idea to configure your enviroment variables and add
 
 ### bashrc
 bashrc is the file that bash references for interactive, non-login shells. This includes all
-bash shells that are started up when you are already logged in. For example, when you start a 
-terminal when you are logged in graphically, this is an interactive non-login shell.
+bash shells that are started up when you are already logged in. An example of this type of
+shell is when you start a terminal when you are logged in graphically.
 
 ### bash_profile
 bash_profile is ran for login shells. When you connect remotely to a machine with SSH 
