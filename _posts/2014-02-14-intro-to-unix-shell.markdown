@@ -1,6 +1,8 @@
-# Introduction to the Unix shell
-aka how to use a terminal
-
+---
+layout: post
+title: Introduction to the Unix shell
+---
+#Test
 ## FAQ
 ### What's a shell?
 A shell is a way to interact with your operating system via a text based system. 
@@ -62,7 +64,7 @@ Memorizing all of this flags and how to use each command will come in time. You 
 not know them all.
 
 For most commands, there is usually a man (manual) page associated with it. 
-To read the man page of a command, simply use `man <command>`. This will give you 
+To read the man page of a command, simply use `man command`. This will give you 
 more information on how to run a program.
 
 ## Paths
@@ -81,7 +83,7 @@ Absolute paths are paths that start from /, the root folder. For example:
 Relative paths are paths that start relative to your current position. For
 example:
 - ~ : Your home directory
-- ~<user> : <user>'s home directory
+- ~user : user's home directory
 - . : Your current directory
 - .. : The parent of your current directory
 
@@ -102,8 +104,8 @@ example:
 	- cd - : go to the last directory
 
 ## Reading files
-- cat <file> : Print out file
-- less <file> : Print out file, with scrolling
+- cat file : Print out file
+- less file : Print out file, with scrolling
 
 	Tip:
 	Use `/` to search a file in less. Use `n` to go to the next search term in the file
@@ -125,26 +127,28 @@ I am particular to vim, so we will briefly go over the basics.
 
 ## Permissions
 To view permissions of a file or directory, use `ls -l`. You should see something like:
-total 5972
-drwxr-xr-x  2 wlynch92 allusers   4096 Nov 15 14:22 bin
-drwxr-xr-x  3 wlynch92 allusers   4096 Sep  4 14:30 build
-drwx------ 17 wlynch92 allusers   4096 Feb 16  2013 class
-drwxr-xr-x  6 wlynch92 allusers   4096 Dec 11 12:35 Desktop
-drwxr-xr-x  2 wlynch92 allusers   4096 Nov 13  2012 Documents
-drwxr-xr-x  2 wlynch92 allusers   4096 Dec 12 11:03 Downloads
-drwxr-x--- 12 wlynch92 studsys    4096 Jan  8 15:44 lcsr
-drwxr-xr-x  2 wlynch92 allusers   4096 Apr 13  2012 lib
-drwxr-xr-x  8 wlynch92 allusers   4096 Oct 25 15:33 minecraft
--rwxr-xr-x  1 wlynch92 allusers 280212 Oct 25 15:33 Minecraft.jar
--rw-------  1 wlynch92 allusers    141 Sep 26 20:28 payroll.yaml
-drwxr-xr-x  3 wlynch92 allusers   4096 Nov 27 15:44 public_html
--rw-r--r--  1 wlynch92 allusers  30141 Sep 28  2012 resume.pdf
-drwxr-xr-x  3 wlynch92 allusers   4096 Feb  3  2012 share
-drwxr-xr-x 10 wlynch92 allusers   4096 Oct  2 10:36 src
-drwxr-xr-x  2 wlynch92 allusers   4096 Feb 11 10:07 tmp
-drwxr-xr-x  2 wlynch92 allusers   4096 Jun  8  2012 Videos
+
+	total 5972
+	drwxr-xr-x  2 wlynch92 allusers   4096 Nov 15 14:22 bin
+	drwxr-xr-x  3 wlynch92 allusers   4096 Sep  4 14:30 build
+	drwx------ 17 wlynch92 allusers   4096 Feb 16  2013 class
+	drwxr-xr-x  6 wlynch92 allusers   4096 Dec 11 12:35 Desktop
+	drwxr-xr-x  2 wlynch92 allusers   4096 Nov 13  2012 Documents
+	drwxr-xr-x  2 wlynch92 allusers   4096 Dec 12 11:03 Downloads
+	drwxr-x--- 12 wlynch92 studsys    4096 Jan  8 15:44 lcsr
+	drwxr-xr-x  2 wlynch92 allusers   4096 Apr 13  2012 lib
+	drwxr-xr-x  8 wlynch92 allusers   4096 Oct 25 15:33 minecraft
+	-rwxr-xr-x  1 wlynch92 allusers 280212 Oct 25 15:33 Minecraft.jar
+	-rw-------  1 wlynch92 allusers    141 Sep 26 20:28 payroll.yaml
+	drwxr-xr-x  3 wlynch92 allusers   4096 Nov 27 15:44 public_html
+	-rw-r--r--  1 wlynch92 allusers  30141 Sep 28  2012 resume.pdf
+	drwxr-xr-x  3 wlynch92 allusers   4096 Feb  3  2012 share
+	drwxr-xr-x 10 wlynch92 allusers   4096 Oct  2 10:36 src
+	drwxr-xr-x  2 wlynch92 allusers   4096 Feb 11 10:07 tmp
+	drwxr-xr-x  2 wlynch92 allusers   4096 Jun  8  2012 Videos
 
 Each column has a particular meaning:
+
 1. Permissions
 2. # of hard links
 3. Owning User
@@ -289,9 +293,9 @@ For example:
 ## Redirection
 You can manipulate stdin (input) as well as stdout and stderr (output) to your commands via 
 stream redirection. You can do this by appending these to the end of your command:
-- < : Redirect stdin to read in from thing on right
-- > : Write stdout to file (overwrites existing contents)
-- >> : Append stdout to file
+- \< : Redirect stdin to read in from thing on right
+- \> : Write stdout to file (overwrites existing contents)
+- \>\> : Append stdout to file
 - 2>/2>> : Same as `>`/`>>`, but with stderr
 - &>/&>> : Same as `>`/`>>`, but with both stdout and stderr 
 - | : Use the output of the left as the input of the right
@@ -300,7 +304,7 @@ stream redirection. You can do this by appending these to the end of your comman
 
 ### Command substitution
 You can nest commands within each other by nesting them within \`\`. For example:
-`ifconfig > \`hostname\`.txt`
+`ifconfig > `hostname`.txt`
 
 ## Environment variables
 Something I hear a lot is "How does the shell know what to run?" The answer to this question
