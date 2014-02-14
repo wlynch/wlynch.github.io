@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Introduction to the Unix shell
+subtitle: aka how do I Terminal
 ---
 # FAQ
 ### What's a shell?
