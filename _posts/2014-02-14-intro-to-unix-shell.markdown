@@ -28,17 +28,17 @@ Windows does have cmd and PowerShell, Windows is a very different operating syst
 very different utilities. We will be focusing on commands found commonly on Unix systems.
 
 ### How do I create an iLab account
-[https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/]
+[https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/](https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/)
 
-Problems? Email help@cs.rutgers.edu
+Problems? Email [help@cs.rutgers.edu](mailto:help@cs.rutgers.edu)
 
 ### How do I access iLab machines remotely via Windows or a Chromebook?
 I recommend connecting with an SSH application such as SecureShell (Google Chrome plugin) 
 or Putty.
 
 ### What's the difference between a command and a program?
-You will probably see me using these terms interchangably. The explicit is that you enter a 
-command in the shell that tells your OS what program to run and how to run it.
+You will probably see me using these terms interchangably. The explicit difference is that 
+you enter a command in the shell that tells your OS what program to run and how to run it.
 
 # Running commands
 Simply open up a shell, type a command, and hit enter. It is that simple. For example:
@@ -294,7 +294,7 @@ For example:
 - `ftp/sftp` : Get/put file from/to remote server via FTP.
 - `scp` : Secure copy. Similar to scp, but can transfer multiple files/directories at once.
 - `ssh` : Connect to remote host via SSH.
-- `pdsh` : ssh on steroids. See [http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html]
+- `pdsh` : ssh on steroids. See [http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html](http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html)
 
 ### File compression
 - `tar`
