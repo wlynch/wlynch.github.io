@@ -315,12 +315,12 @@ For example:
 You can manipulate stdin (input) as well as stdout and stderr (output) to your commands via 
 stream redirection. You can do this by appending these to the end of your command:
 
-- ``\<`` : Redirect stdin to read in from thing on right
-- ``\>`` : Write stdout to file (overwrites existing contents)
-- ``\>\>`` : Append stdout to file
-- ``2>` / `2>>`` : Same as `>`/`>>`, but with stderr
-- ``&>` / `&>>`` : Same as `>`/`>>`, but with both stdout and stderr 
-- ``|`` : Use the output of the left as the input of the right
+- `<` : Redirect stdin to read in from thing on right
+- `>` : Write stdout to file (overwrites existing contents)
+- `>>` : Append stdout to file
+- `2>` / `2>>` : Same as `>`/`>>`, but with stderr
+- `&>` / `&>>` : Same as `>`/`>>`, but with both stdout and stderr 
+- `|` : Use the output of the left as the input of the right
 
 	Example: `ls | grep asdf` 
 
