@@ -2,7 +2,6 @@
 	cd.cs.rutgers.edu
 	chmod.cs.rutgers.edu
 	cp.cs.rutgers.edu
-	#date.cs.rutgers.edu
 	grep.cs.rutgers.edu
 	kill.cs.rutgers.edu
 	last.cs.rutgers.edu
@@ -16,11 +15,8 @@
 	pwd.cs.rutgers.edu
 	rm.cs.rutgers.edu
 	sed.cs.rutgers.edu
-	#tee.cs.rutgers.edu
 	top.cs.rutgers.edu
-	#touch.cs.rutgers.edu
 	vi.cs.rutgers.edu
-	#whoami.cs.rutgers.edu
 	adapter.cs.rutgers.edu
 	builder.cs.rutgers.edu
 	command.cs.rutgers.edu
@@ -44,7 +40,6 @@
 	visitor.cs.rutgers.edu
 	assembly.cs.rutgers.edu
 	cpp.cs.rutgers.edu
-	javascript.cs.rutgers.edu
 	pascal.cs.rutgers.edu
 	php.cs.rutgers.edu
 	python.cs.rutgers.edu
