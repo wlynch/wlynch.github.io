@@ -8,7 +8,5 @@ My friend V [introduced me](http://vverma.net/use-pdsh-to-shell-into-multiple-ho
 Here's how to disable MotD from appearing in the output of PDSH. In your `~/.bashrc` include:
 
 ```
-export PDSH_SSH_ARGS_APPEND=-oLogLevel=Error
+export PDSH_SSH_ARGS_APPEND="-oLogLevel=Error"
 ```
-
-### Edit:
