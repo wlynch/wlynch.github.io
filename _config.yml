@@ -4,4 +4,4 @@ name: wlyn.ch
 markdown: redcarpet
 pygments: true
 
-permalink: /:categories/:title/
+permalink: /posts/:categories/:title/
