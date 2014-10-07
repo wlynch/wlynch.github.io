@@ -1,4 +1,4 @@
-exclude: ["README.md", "CNAME"]
+exclude: ["README.md", "CNAME", "TODO"]
 
 name: wlyn.ch
 markdown: redcarpet
