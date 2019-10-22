@@ -6,6 +6,7 @@
     <description>Recent content on Billy Lynch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 14 Mar 2014 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://wlyn.ch/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>CS419 - Logging in to VMs via SSH</title>
       <link>http://wlyn.ch/posts/2014-03-14-cs419-vm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>http://wlyn.ch/posts/2014-03-14-cs419-vm/</guid>
       <description>So logging in via X11 sucks. The problem with this is that you don&amp;rsquo;t know where the machine is and what address it is on. There is a way to programmatically find this information, but it relies on you having access to the .vmx file (which we don&amp;rsquo;t have). This feature is in development, but until then&amp;hellip;
@@ -23,7 +24,7 @@ Find your VM Your VM can exist on any ilab machine. Let&amp;rsquo;s find it.</de
     <item>
       <title>Disabling MotD for PDSH</title>
       <link>http://wlyn.ch/posts/2014-03-14-pdsh-disable-motd/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>http://wlyn.ch/posts/2014-03-14-pdsh-disable-motd/</guid>
       <description>My friend V introduced me to an awesome tool called PDSH. One thing that really bothered me was when logging in to machines that had a message of the day, my screen would be flooded with messages, burying the information I needed.
@@ -34,7 +35,7 @@ export PDSH_SSH_ARGS_APPEND=&amp;quot;-oLogLevel=Error&amp;quot;  </description>
     <item>
       <title>Introduction to the Unix shell</title>
       <link>http://wlyn.ch/posts/2014-02-14-intro-to-unix-shell/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>http://wlyn.ch/posts/2014-02-14-intro-to-unix-shell/</guid>
       <description>FAQ What&amp;rsquo;s a shell? A shell is a way to interact with your operating system via a text based system. This allows you to do useful things like fast searches and scripting. Since it is a minimal interface, it makes it great to use across network connections.

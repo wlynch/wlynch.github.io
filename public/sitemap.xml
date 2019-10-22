@@ -4,26 +4,31 @@
   
   <url>
     <loc>http://wlyn.ch/</loc>
-  </url>
-  
-  <url>
-    <loc>http://wlyn.ch/categories/</loc>
+    <lastmod>2014-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://wlyn.ch/posts/2014-03-14-cs419-vm/</loc>
+    <lastmod>2014-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://wlyn.ch/posts/2014-03-14-pdsh-disable-motd/</loc>
-  </url>
-  
-  <url>
-    <loc>http://wlyn.ch/posts/2014-02-14-intro-to-unix-shell/</loc>
+    <lastmod>2014-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://wlyn.ch/posts/</loc>
+    <lastmod>2014-03-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://wlyn.ch/posts/2014-02-14-intro-to-unix-shell/</loc>
+    <lastmod>2014-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://wlyn.ch/categories/</loc>
   </url>
   
   <url>
