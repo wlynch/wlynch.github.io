@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.59.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Introduction to the Unix shell &middot; Billy Lynch</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-0d ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://wlyn.ch"><h1>Billy Lynch</h1></a>
+      <p class="lead">
+         
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://wlyn.ch">Home</a> </li>
+        <li><a href="https://github.com/wlynch"> GitHub </a></li><li><a href="https://www.linkedin.com/in/wflynch"> LinkedIn </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2019. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Introduction to the Unix shell</h1>
+  <time datetime=2014-02-14T00:00:00Z class="post-date">Fri, Feb 14, 2014</time>
+  
+
+<h1 id="faq">FAQ</h1>
+
+<h3 id="what-s-a-shell">What&rsquo;s a shell?</h3>
+
+<p>A shell is a way to interact with your operating system via a text based system.
+This allows you to do useful things like fast searches and scripting. Since it is
+a minimal interface, it makes it great to use across network connections.</p>
+
+<p>There are many types of shells including bash, csh, tcsh, and zsh.</p>
+
+<h3 id="shell-vs-terminal">Shell vs. Terminal</h3>
+
+<p>People often ask what the difference between a shell and a terminal is. A shell is the actual
+interface between you and your OS, the terminal is the (GUI) application that surrounds it.</p>
+
+<p>Generally you can use either interchangably and people will know what you are talking about.</p>
+
+<h4 id="common-terminals">Common Terminals:</h4>
+
+<ul>
+<li>Mac: Terminal, iTerm2</li>
+<li>Linux/other Unix: xterm, gnome-terminal</li>
+</ul>
+
+<h3 id="what-if-i-am-using-windows">What if I am using Windows?</h3>
+
+<p>If you are using Windows, I would recommend using a VM or creating an iLab account. While
+Windows does have cmd and PowerShell, Windows is a very different operating system with
+very different utilities. We will be focusing on commands found commonly on Unix systems.</p>
+
+<h3 id="how-do-i-create-an-ilab-account">How do I create an iLab account</h3>
+
+<p><a href="https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/">https://www.cs.rutgers.edu/resources/systems/ilab/newaccount/create/</a></p>
+
+<p>Problems? Email <a href="mailto:help@cs.rutgers.edu">help@cs.rutgers.edu</a></p>
+
+<h3 id="how-do-i-access-ilab-machines-remotely-via-windows-or-a-chromebook">How do I access iLab machines remotely via Windows or a Chromebook?</h3>
+
+<p>I recommend connecting with an SSH application such as SecureShell (Google Chrome plugin)
+or Putty.</p>
+
+<h3 id="what-s-the-difference-between-a-command-and-a-program">What&rsquo;s the difference between a command and a program?</h3>
+
+<p>You will probably see me using these terms interchangably. The explicit difference is that
+you enter a command in the shell that tells your OS what program to run and how to run it.</p>
+
+<h1 id="running-commands">Running commands</h1>
+
+<p>Simply open up a shell, type a command, and hit enter. It is that simple. For example:
+<code>echo &quot;Hello World!&quot;</code>.</p>
+
+<p>If you get an error saying something along the lines of &ldquo;command not found&rdquo;, then this
+usually means:</p>
+
+<ol>
+<li>The command is not installed on the machine you are using</li>
+<li>Your environment is misconfigured. (more on this later)</li>
+</ol>
+
+<h3 id="flags">Flags</h3>
+
+<p>Also called options, are ways of modifying the behavior of commands. They usually are after
+the program name, starting with <code>-</code> or <code>--</code>. You can mix and match flags to get the behavior
+that you want. What each flag does is completely dependent on the command.</p>
+
+<p>Flags starting with <code>-</code> can usually be combined into a single <code>-</code> flag. For example:
+<code>ls -R -a -l</code> = <code>ls -Ral</code>. This is NOT true for <code>--</code> flags.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>Arguments are user defined information that is passed to commands an flags. They immediately
+follow the command/flag. For example, in <code>ls /usr/local</code>, <code>/usr/local</code> is the argument.
+Depending on the command, you can give 0 to many arguments.</p>
+
+<h1 id="getting-help">Getting help</h1>
+
+<p>Memorizing all of this flags and how to use each command will come in time. You will
+not know them all.</p>
+
+<p>For most commands, there is usually a man (manual) page associated with it.
+To read the man page of a command, simply use <code>man command</code>. This will give you
+more information on how to run a program.</p>
+
+<h1 id="paths">Paths</h1>
+
+<p>Paths are the &ldquo;addresses&rdquo; of files and folders. There are 2 types of paths:
+absolute and relative. Both can be used in conjunction with any command that takes in
+a file or folder as an argument.</p>
+
+<p>###Absolute Paths
+Absolute paths are paths that start from /, the root folder. For example:</p>
+
+<ul>
+<li>/home/wlynch/</li>
+<li>/usr/local/bin/python</li>
+<li>/var/log/messages/</li>
+</ul>
+
+<h3 id="relative-paths">Relative Paths</h3>
+
+<p>Relative paths are paths that start relative to your current position. For
+example:</p>
+
+<ul>
+<li><code>~</code> : Your home directory</li>
+<li><code>~user</code> : user&rsquo;s home directory</li>
+<li><code>.</code> : Your current directory</li>
+<li><code>..</code> : The parent of your current directory</li>
+</ul>
+
+<h1 id="basic-navigation">Basic Navigation</h1>
+
+<ul>
+<li><code>pwd</code> : print working directory</li>
+
+<li><p><code>ls</code> : list</p>
+
+<p>Common options:</p>
+
+<ul>
+<li><code>-a</code> : Show all files (even hidden)</li>
+<li><code>-l</code> : List in long format</li>
+<li><code>-h</code> : Use human readable sizes (useful with -l)</li>
+<li><code>-R</code> : Recursively list.</li>
+<li><code>-d</code> : List the directory, not its contents</li>
+</ul></li>
+
+<li><p><code>cd</code> : change directory</p>
+
+<p>Special uses:</p>
+
+<ul>
+<li><code>cd</code> : go to home directory</li>
+<li><code>cd -</code> : go to the last directory</li>
+</ul></li>
+</ul>
+
+<h1 id="reading-files">Reading files</h1>
+
+<ul>
+<li><code>cat file</code> : Print out file</li>
+
+<li><p><code>less file</code> : Print out file, with scrolling</p>
+
+<p>Tip:
+Use <code>/</code> to search a file in less. Use <code>n</code> to go to the next search term in the file
+and <code>N</code> for the previous.</p></li>
+</ul>
+
+<h1 id="editing-files">Editing files</h1>
+
+<ul>
+<li><code>vim</code></li>
+<li><code>emacs</code></li>
+</ul>
+
+<p>I am particular to vim, so we will briefly go over the basics.</p>
+
+<h3 id="vim-vi-improved-basics">Vim (Vi IMproved) Basics</h3>
+
+<ul>
+<li>In vim, there are 3 modes in vim: Command, Insert, and Visual.</li>
+<li>When you start vim, you begin in command mode.</li>
+<li>To move to insert mode, hit <code>i</code>.</li>
+<li>To exit insert mode, hit <code>ESC</code>.</li>
+<li>To save, enter <code>:w</code> in command mode</li>
+<li>To exit, enter <code>:q</code> in command mode</li>
+</ul>
+
+<h1 id="permissions">Permissions</h1>
+
+<p>To view permissions of a file or directory, use <code>ls -l</code>. You should see something like:</p>
+
+<pre><code>total 5972
+drwxr-xr-x  2 wlynch92 allusers   4096 Nov 15 14:22 bin
+drwxr-xr-x  3 wlynch92 allusers   4096 Sep  4 14:30 build
+drwx------ 17 wlynch92 allusers   4096 Feb 16  2013 class
+drwxr-xr-x  6 wlynch92 allusers   4096 Dec 11 12:35 Desktop
+drwxr-xr-x  2 wlynch92 allusers   4096 Nov 13  2012 Documents
+drwxr-xr-x  2 wlynch92 allusers   4096 Dec 12 11:03 Downloads
+drwxr-x--- 12 wlynch92 studsys    4096 Jan  8 15:44 lcsr
+drwxr-xr-x  2 wlynch92 allusers   4096 Apr 13  2012 lib
+drwxr-xr-x  8 wlynch92 allusers   4096 Oct 25 15:33 minecraft
+-rwxr-xr-x  1 wlynch92 allusers 280212 Oct 25 15:33 Minecraft.jar
+-rw-------  1 wlynch92 allusers    141 Sep 26 20:28 payroll.yaml
+drwxr-xr-x  3 wlynch92 allusers   4096 Nov 27 15:44 public_html
+-rw-r--r--  1 wlynch92 allusers  30141 Sep 28  2012 resume.pdf
+drwxr-xr-x  3 wlynch92 allusers   4096 Feb  3  2012 share
+drwxr-xr-x 10 wlynch92 allusers   4096 Oct  2 10:36 src
+drwxr-xr-x  2 wlynch92 allusers   4096 Feb 11 10:07 tmp
+drwxr-xr-x  2 wlynch92 allusers   4096 Jun  8  2012 Videos
+</code></pre>
+
+<p>Each column has a particular meaning:</p>
+
+<ol>
+<li>Permissions</li>
+<li># of hard links</li>
+<li>Owning User</li>
+<li>Owning Group</li>
+<li>Size</li>
+<li>Last Modified Date</li>
+<li>Name</li>
+</ol>
+
+<p>Permissions are broken up into 9 fields.</p>
+
+<p>The first character represents the file type. This can be:
+- <code>-</code> : File
+- <code>d</code> : Directory
+- <code>l</code> : symlink
+- Other file types that we will note worry about for now.</p>
+
+<p>The next 9 characters should be viewed as 3 different sets of <code>rwx</code>. The first set
+represents the permissions of the owning user. The second set represents the permissions
+of the owning group. The third set represents the permissions of anyone else.</p>
+
+<p><code>r</code>, <code>w</code>, and <code>x</code> take on different meanings depending on the type of file.
+For files:
+- <code>r</code> : The user can read the file.
+- <code>w</code> : The user can write to or remove the file.
+- <code>x</code> : The user can execute the file as a program.</p>
+
+<p>For directories:
+- <code>r</code> : The user can see what is inside the directory.
+- <code>w</code> : The user can add/remove files to the directory.
+- <code>x</code> : The user can <code>cd</code> into the directory.</p>
+
+<p>A <code>-</code> means that the corresponding group does not have that permission.</p>
+
+<p>There are additional permissions that you can set for finer control, but we will not be
+covering those here. Check out the man page for more details!</p>
+
+<h3 id="setting-permissions">Setting permissions</h3>
+
+<p>You can set permissions of a file via the <code>chmod</code> command. There are 2 modes of chmod:
+absolute or symbolic.</p>
+
+<h4 id="absolute-permissions">Absolute permissions</h4>
+
+<p>Absolute permissions are represented by 3 digit octal numbers representing each of the 3
+groups of permissions. Imagine that you represent each permission as a binary number where
+r = 4, w = 2, and x = 1. You can represent each group as the sum of these numbers. For example:</p>
+
+<ul>
+<li>rwx = 7</li>
+<li>r-x = 5</li>
+<li>r&ndash; = 4</li>
+<li>&mdash; = 0</li>
+</ul>
+
+<p>You can then combine this for all 3 groups to form an absolute permission: <code>chmod 755 example.txt</code></p>
+
+<h4 id="relative-permissions">Relative permissions</h4>
+
+<p>Relative permissions change permissions relative to it&rsquo;s current state. This is useful to
+ensure that multiple files have a certain permission property regardless of their original
+state. This is done by using:</p>
+
+<ul>
+<li>a group : <code>u</code> (user), <code>g</code> (group), or <code>o</code> (other)</li>
+<li>an operation : <code>+</code>, <code>-</code>, <code>=</code></li>
+<li>a permission : <code>r</code>, <code>w</code>, <code>x</code></li>
+</ul>
+
+<p>For example:
+<code>chmod ug+r example.txt</code> will add the read permission for the user and group
+(if it didn&rsquo;t already exist).</p>
+
+<h1 id="file-directory-manipulation">File/directory manipulation</h1>
+
+<ul>
+<li><code>touch</code> : Create a file / update time of access</li>
+
+<li><p><code>mkdir</code> : Make a directory</p>
+
+<p>Common options:</p>
+
+<ul>
+<li><code>-p</code> : Create the folder and all necessary parents that don&rsquo;t exist.</li>
+</ul></li>
+
+<li><p><code>rmdir</code> : Remove a directory</p>
+
+<p>Note: the directory must be empty.</p></li>
+
+<li><p><code>mv</code> : Move a file/directory</p>
+
+<p>The <code>mv</code> command is also used to rename a file. For example: <code>mv a b</code> will rename file
+a to b.</p></li>
+
+<li><p><code>rm</code> : Remove a file/directory</p>
+
+<p>Common options:</p>
+
+<ul>
+<li><code>-f</code> : Do not prompt user for deletion.</li>
+
+<li><p><code>-r</code> : Recursively remove a directory</p>
+
+<p>Be careful when using this with the -f flag!</p></li>
+</ul></li>
+
+<li><p><code>cp</code> : Copy a file/directory
+Common options:</p>
+
+<ul>
+<li><code>-p</code> : Preserve permissions</li>
+<li><code>-R</code> : copy recursively</li>
+<li><code>-a</code> : Same as <code>-pR</code></li>
+</ul></li>
+
+<li><p><code>ln</code> : Make a link</p>
+
+<p>Links are a way to create shortcuts to files. This is useful so that a file can be in multiple
+locations on your filesystem without taking up additional space. There are 2 types of links:
+Hard and Soft.</p>
+
+<p>Hard links point to a file&rsquo;s contents directly. If the original is deleted you will still be
+able to access it through the link.</p>
+
+<p>Soft links point to a files contents indirectly. Instead, it points to the original location
+of the file. You can think of this as a traditional shortcut. Soft links are also called
+symbolic links or &ldquo;symlinks&rdquo;. You can create a symlink with the <code>-s</code> flag.</p></li>
+</ul>
+
+<h1 id="other-useful-commands">Other useful commands</h1>
+
+<h3 id="disk-usage">Disk usage</h3>
+
+<ul>
+<li><code>du</code> : (disk usage stats) Show sizes of files</li>
+<li><code>df</code> : (disk free stats) Show drive disk usage.</li>
+<li><code>quota</code> : See disk quota usage</li>
+</ul>
+
+<h3 id="file-search">File search</h3>
+
+<ul>
+<li><code>find</code> : recursively list files</li>
+<li><code>diff</code> : compare files for differences</li>
+<li><code>grep</code> : (Global Regular Expression Parser) Search file via a regular expression</li>
+<li><code>which</code> : See which program your shell is executing</li>
+<li><code>whereis</code> : See where your shell can find a program</li>
+</ul>
+
+<h3 id="user-info">User info</h3>
+
+<ul>
+<li><code>finger</code> : get user info</li>
+<li><code>whoami</code> : Display current user</li>
+<li><code>ypcat</code> : Get NIS user information</li>
+<li><code>w</code> : See who is logged in</li>
+</ul>
+
+<h3 id="processes">Processes</h3>
+
+<ul>
+<li><code>ps</code> : Show process information</li>
+<li><code>top</code> : Show updating process information</li>
+<li><code>kill</code> : Send signal to process by PID</li>
+<li><code>pkill</code> : Send signal to process by name</li>
+</ul>
+
+<h3 id="network">Network</h3>
+
+<ul>
+<li><code>ping</code> : Send echo packet</li>
+<li><code>wget</code> : Get HTTP page</li>
+<li><code>curl</code> : Send network request</li>
+<li><code>host/dig</code> : DNS lookup</li>
+<li><code>ifconfig</code> : See/change network information for your machine.</li>
+<li><code>hostname</code> : Get/set the hostname of your current machine</li>
+<li><code>ftp/sftp</code> : Get/put file from/to remote server via FTP.</li>
+<li><code>scp</code> : Secure copy. Similar to scp, but can transfer multiple files/directories at once.</li>
+<li><code>ssh</code> : Connect to remote host via SSH.</li>
+<li><code>pdsh</code> : ssh on steroids. See <a href="http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html">http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html</a></li>
+</ul>
+
+<h3 id="file-compression">File compression</h3>
+
+<ul>
+<li><code>tar</code></li>
+<li><code>zip/unzip</code></li>
+<li><code>bzip2</code></li>
+</ul>
+
+<h3 id="string-manipulation">String manipulation</h3>
+
+<ul>
+<li><code>cut</code></li>
+<li><code>awk</code></li>
+<li><code>sed</code></li>
+</ul>
+
+<h3 id="misc">Misc</h3>
+
+<ul>
+<li><code>echo</code> : Print to stdout</li>
+<li><code>sleep</code> : Do nothing for x seconds</li>
+<li><code>alias</code> : Remap one command to another</li>
+</ul>
+
+<h1 id="redirection">Redirection</h1>
+
+<p>You can manipulate stdin (input) as well as stdout and stderr (output) to your commands via
+stream redirection. You can do this by appending these to the end of your command:</p>
+
+<ul>
+<li><code>&lt;</code> : Redirect stdin to read in from thing on right</li>
+<li><code>&gt;</code> : Write stdout to file (overwrites existing contents)</li>
+<li><code>&gt;&gt;</code> : Append stdout to file</li>
+<li><code>2&gt;</code> / <code>2&gt;&gt;</code> : Same as <code>&gt;</code>/<code>&gt;&gt;</code>, but with stderr</li>
+<li><code>&amp;&gt;</code> / <code>&amp;&gt;&gt;</code> : Same as <code>&gt;</code>/<code>&gt;&gt;</code>, but with both stdout and stderr</li>
+
+<li><p><code>|</code> : Use the output of the left as the input of the right</p>
+
+<p>Example: <code>ls | grep asdf</code></p></li>
+</ul>
+
+<h3 id="command-substitution">Command substitution</h3>
+
+<p>You can nest commands within each other by nesting them within ``. For example:
+<code>ifconfig &gt;</code>hostname<code>.txt</code></p>
+
+<h1 id="chaining-commands">Chaining commands</h1>
+
+<p><code>&amp;&amp;</code> and <code>||</code> can be used to chain commands together depending on the result of the previous
+command. <code>&amp;&amp;</code> means to only run the next command if the previous command succeeds. <code>||</code> means
+to only run the next command if the previous command failed. For example:
+- <code>javac HelloWorld.java &amp;&amp; java HelloWorld</code>
+- <code>w | grep \</code>whoami` || echo &ldquo;User not found&rdquo;`</p>
+
+<h1 id="environment-variables">Environment variables</h1>
+
+<p>Something I hear a lot is &ldquo;How does the shell know what to run?&rdquo; The answer to this question
+is environment variables.</p>
+
+<p>Environment variables are settings that your shell configures when you log in. You
+can view all of these variables with the <code>env</code> command. The <code>PATH</code> variable tells your
+shell in what folders it should look for programs when you enter a command (and in what order
+it should look at them). You can view your path by running <code>echo $PATH</code> (<code>$</code> signifies
+a shell variable).</p>
+
+<p>You can modify your path by running <code>export PATH=$PATH:new_directory</code>. This make it very
+easy to add other directories where you can put your own code or add programs that
+were installed in non-standard paths. I recommend you add <code>~/bin</code> to your path so that
+you can start adding your own programs to your path.</p>
+
+<p>WARNING: Only add trusted folders to your path. Otherwise someone could make a bad program
+with a common name that you could accidentally run without even knowing!</p>
+
+<h1 id="shell-configuration">Shell configuration</h1>
+
+<p>While you can change the path, these changes won&rsquo;t persist after you close your shell.
+What you need to do is create a configuration file that tells your shell what to do when
+it starts up. This configuration file varies for each shell. For now, let&rsquo;s focus on bash.</p>
+
+<p>Bash uses 2 main files to set up your environment. In this process, it looks for user defined
+settings in <code>~/.bashrc</code> and <code>~/.bash_profile</code>.</p>
+
+<p>These files are shell scripts. They automatically run each line as if you typed them out
+yourself. This makes them idea to configure your enviroment variables and add</p>
+
+<h3 id="bashrc">bashrc</h3>
+
+<p>bashrc is the file that bash references for interactive, non-login shells. This includes all
+bash shells that are started up when you are already logged in. An example of this type of
+shell is when you start a terminal when you are logged in graphically.</p>
+
+<h3 id="bash-profile">bash_profile</h3>
+
+<p>bash_profile is ran for login shells. When you connect remotely to a machine with SSH
+(or an SSH application), the original shell you open is a login shell.</p>
+
+<p>It is common to <code>source</code> <code>~/.bashrc</code> from <code>~/.bash_profile</code>. <code>source</code> tells your shell to treat
+the contents of the argument as if it were part of the current file.</p>
+
+</div>
+
+
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-51544701-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

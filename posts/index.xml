@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Billy Lynch</title>
+    <link>http://wlyn.ch/posts/</link>
+    <description>Recent content in Posts on Billy Lynch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 14 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wlyn.ch/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CS419 - Logging in to VMs via SSH</title>
+      <link>http://wlyn.ch/posts/2014-03-14-cs419-vm/</link>
+      <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://wlyn.ch/posts/2014-03-14-cs419-vm/</guid>
+      <description>So logging in via X11 sucks. The problem with this is that you don&amp;rsquo;t know where the machine is and what address it is on. There is a way to programmatically find this information, but it relies on you having access to the .vmx file (which we don&amp;rsquo;t have). This feature is in development, but until then&amp;hellip;
+Find your VM Your VM can exist on any ilab machine. Let&amp;rsquo;s find it.</description>
+    </item>
+    
+    <item>
+      <title>Disabling MotD for PDSH</title>
+      <link>http://wlyn.ch/posts/2014-03-14-pdsh-disable-motd/</link>
+      <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://wlyn.ch/posts/2014-03-14-pdsh-disable-motd/</guid>
+      <description>My friend V introduced me to an awesome tool called PDSH. One thing that really bothered me was when logging in to machines that had a message of the day, my screen would be flooded with messages, burying the information I needed.
+Here&amp;rsquo;s how to disable MotD from appearing in the output of PDSH. In your ~/.bashrc include:
+export PDSH_SSH_ARGS_APPEND=&amp;quot;-oLogLevel=Error&amp;quot;  </description>
+    </item>
+    
+    <item>
+      <title>Introduction to the Unix shell</title>
+      <link>http://wlyn.ch/posts/2014-02-14-intro-to-unix-shell/</link>
+      <pubDate>Fri, 14 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://wlyn.ch/posts/2014-02-14-intro-to-unix-shell/</guid>
+      <description>FAQ What&amp;rsquo;s a shell? A shell is a way to interact with your operating system via a text based system. This allows you to do useful things like fast searches and scripting. Since it is a minimal interface, it makes it great to use across network connections.
+There are many types of shells including bash, csh, tcsh, and zsh.
+Shell vs. Terminal People often ask what the difference between a shell and a terminal is.</description>
+    </item>
+    
+  </channel>
+</rss>
