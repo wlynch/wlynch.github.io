@@ -1,0 +1,16 @@
+baseURL = "http://wlyn.ch"
+languageCode = "en-us"
+title = "Billy Lynch"
+theme = "hyde"
+googleAnalytics = "UA-51544701-1"
+
+[params]
+  themeColor = "theme-base-0d"
+  description = " "
+	avatarurl = "static/profile.jpg"
+
+[Menus]
+  main = [
+      {Name = "GitHub", URL = "https://github.com/wlynch"},
+      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/wflynch"}
+  ]

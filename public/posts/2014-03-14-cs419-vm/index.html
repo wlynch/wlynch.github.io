@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.59.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CS419 - Logging in to VMs via SSH &middot; Billy Lynch</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://wlyn.chcss/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://wlyn.ch"><h1>Billy Lynch</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://wlyn.ch">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2019. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>CS419 - Logging in to VMs via SSH</h1>
+  <time datetime=0001-01-01T00:00:00Z class="post-date">Mon, Jan 1, 0001</time>
+  
+
+<p>So logging in via X11 sucks. The problem with this is that you don&rsquo;t know where the machine is and what address it is on. There is a way to programmatically find this information, but it relies on you having access to the .vmx file (which we don&rsquo;t have). This feature is in development, but until then&hellip;</p>
+
+<h1 id="find-your-vm">Find your VM</h1>
+
+<p>Your VM can exist on any ilab machine. Let&rsquo;s find it.</p>
+
+<pre><code>pdsh -R ssh -w ^ilabMachines.txt &quot;ps -ef | grep cs419-grp21-[1]&quot;
+</code></pre>
+
+<p>Replace your VM name as needed. You should see something along the lines of:</p>
+
+<pre><code>utility.cs.rutgers.edu: vmuser   20766     1  0 Mar23 ?        00:01:35 /usr/lib/vmware/bin/vmware-vmx -s vmx.noUIBuildNumberCheck=TRUE -# product=1;name=VMware Workstation;version=9.0.0;buildnumber=812388;licensename=VMware Workstation;licenseversion=9.0; -@ duplex=3;msgs=ui /.freespace/vmctl/images/cs419-grp21-1/Debian_6.vmx
+</code></pre>
+
+<p>If you don&rsquo;t make sure your VM is running and try again.</p>
+
+<p>For more information on pdsh, check out <a href="http://vverma.net/use-pdsh-to-shell-into-multiple-hosts.html">V&rsquo;s blog post</a>.</p>
+
+<h3 id="ilabmachines-txt">ilabMachines.txt</h3>
+
+<p>{% include ilabMachines.txt %}</p>
+
+<h1 id="find-the-ip-address">Find the IP Address</h1>
+
+<p>To find the IP address, SSH into the machine you found above. Then look in <code>/etc/vmware/vmnet8/dhcpd/dhcpd.leases</code>. This file is the list of all IP addresses the machine gave to running VMs. These usually start from 192.168.230.192 and increase sequentially from there. Now unfortunately since we do not have access to the .vmx file, we cannot determine which address corresponds to which VM. Therefore the only way to figure out which address is yours is to try and ssh into each. This should only be 1-5 addresses so it shouldn&rsquo;t be that bad.</p>
+
+<p>Note: The VMs get their addresses via DHCP so they can change!</p>
+
+</div>
+
+
+    </main>
+
+    
+  </body>
+</html>

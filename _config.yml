@@ -1,7 +1,0 @@
-exclude: ["README.md", "CNAME", "TODO"]
-
-name: wlyn.ch
-markdown: redcarpet
-pygments: true
-
-permalink: /posts/:categories/:title/
