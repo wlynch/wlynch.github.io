@@ -6,10 +6,21 @@
     <description>Recent content on Billy Lynch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Mar 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 10:19:44 -0400</lastBuildDate>
     
 	<atom:link href="https://wlyn.ch/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloud Build Trigger Cookbook</title>
+      <link>https://wlyn.ch/posts/gcb-trigger-config-files/</link>
+      <pubDate>Tue, 22 Oct 2019 10:19:44 -0400</pubDate>
+      
+      <guid>https://wlyn.ch/posts/gcb-trigger-config-files/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://cloud.google.com/cloud-build/docs/running-builds/automate-builds&#34;&gt;Cloud Build (GCB) Triggers&lt;/a&gt; allows users to define triggers to automatically trigger builds on certain events with source code providers.&lt;/p&gt;
+
+&lt;p&gt;Here are some examples to help get you started!&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>CS419 - Logging in to VMs via SSH</title>

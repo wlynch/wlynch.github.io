@@ -4,7 +4,17 @@
   
   <url>
     <loc>https://wlyn.ch/</loc>
-    <lastmod>2014-03-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-22T10:19:44-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://wlyn.ch/posts/gcb-trigger-config-files/</loc>
+    <lastmod>2019-10-22T10:19:44-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://wlyn.ch/posts/</loc>
+    <lastmod>2019-10-22T10:19:44-04:00</lastmod>
   </url>
   
   <url>
@@ -14,11 +24,6 @@
   
   <url>
     <loc>https://wlyn.ch/posts/2014-03-14-pdsh-disable-motd/</loc>
-    <lastmod>2014-03-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://wlyn.ch/posts/</loc>
     <lastmod>2014-03-14T00:00:00+00:00</lastmod>
   </url>
   
