@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Billy Lynch"
 theme = "hyde"
 googleAnalytics = "UA-51544701-1"
+publishDir = "docs"
 
 pygmentsCodeFences = true
 
