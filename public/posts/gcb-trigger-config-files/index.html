@@ -1,0 +1,89 @@
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en-us lang=en-us><head><link href=https://gmpg.org/xfn/11 rel=profile><meta charset=utf-8><meta name=generator content="Hugo 0.59.0"><meta name=viewport content="width=device-width,initial-scale=1"><title>Cloud Build Trigger Cookbook &middot; Billy Lynch</title><meta name=description content><link type=text/css rel=stylesheet href=https://wlyn.ch/css/print.css media=print><link type=text/css rel=stylesheet href=https://wlyn.ch/css/poole.css><link type=text/css rel=stylesheet href=https://wlyn.ch/css/syntax.css><link type=text/css rel=stylesheet href=https://wlyn.ch/css/hyde.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><aside class=sidebar><div class="container sidebar-sticky"><div class=sidebar-about><a href=https://wlyn.ch/><h1>Billy Lynch</h1></a><p class=lead></p></div><nav><ul class=sidebar-nav><li><a href=https://wlyn.ch/>Home</a></li><li><a href=https://github.com/wlynch>GitHub</a></li><li><a href=https://www.linkedin.com/in/wflynch>LinkedIn</a></li></ul></nav><p>&copy; 2021. All rights reserved.</p></div></aside><main class="content container"><div class=post><h1>Cloud Build Trigger Cookbook</h1><time datetime=2019-10-22T10:19:44-0400 class=post-date>Tue, Oct 22, 2019</time><p><a href=https://cloud.google.com/cloud-build/docs/running-builds/automate-builds>Cloud Build (GCB) Triggers</a> allows users to define triggers to automatically trigger builds on certain events with source code providers.</p><p>Here are some examples to help get you started!</p><h2 id=gcloud-cli>gcloud CLI</h2><p>While GCB provides an
+<a href=https://cloud.google.com/cloud-build/docs/api/reference/rest/v1/projects.triggers#BuildTrigger>API</a>
+for managing Trigger configurations, there are also <a href=https://cloud.google.com/sdk/gcloud/reference/beta/builds/triggers/>gcloud
+commands</a>
+to make managing triggers a bit easier.</p><p>In particular, <a href=https://cloud.google.com/sdk/gcloud/reference/beta/builds/triggers/import><code>gcloud beta builds triggers
+import</code></a>
+allows you to manipulate Build Triggers specified in a file.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cat trigger.yaml
+name: <span style=color:#e6db74>&#34;github-pr&#34;</span>
+github:
+  owner: <span style=color:#e6db74>&#34;wlynch&#34;</span>
+  name: <span style=color:#e6db74>&#34;test&#34;</span>
+  pull_request:
+    branch: <span style=color:#e6db74>&#34;master&#34;</span>
+filename: <span style=color:#e6db74>&#34;cloudbuild.yaml&#34;</span>
+$ gcloud beta builds triggers import --source<span style=color:#f92672>=</span>trigger.yaml
+---
+createTime: <span style=color:#e6db74>&#39;2019-10-22T16:14:12.096958268Z&#39;</span>
+filename: cloudbuild.yaml
+github:
+  name: test
+  owner: wlynch
+  pullRequest:
+    branch: master
+id: 475855d2-7367-4c7a-9fa5-4217925df992
+name: github-pr</code></pre></div><p>The file should contain a YAML or JSON formatted
+<a href=https://cloud.google.com/cloud-build/docs/api/reference/rest/v1/projects.triggers#BuildTrigger><code>BuildTrigger</code></a>.
+You can even specify multiple Trigger documents in the same file!</p><h2 id=cookbook>Cookbook</h2><h3 id=trigger-substitutions>Trigger substitutions</h3><p>Triggers can provide substitutions that will merge with any specified build
+substitutions. This can be useful for sharing the same build configuration file
+across multiple triggers, but providing trigger specific values (for example,
+environment-specific values).</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>name: <span style=color:#e6db74>&#34;github-pr&#34;</span>
+github:
+  owner: <span style=color:#e6db74>&#34;wlynch&#34;</span>
+  name: <span style=color:#e6db74>&#34;test&#34;</span>
+  push:
+    branch: <span style=color:#e6db74>&#34;.*&#34;</span>
+substitutions:
+  _MYSUB: <span style=color:#e6db74>&#34;foo&#34;</span>
+filename: <span style=color:#e6db74>&#34;cloudbuild.yaml&#34;</span></code></pre></div><h3 id=pull-request-with-comment-control-enabled>Pull Request with comment control enabled</h3><p>This trigger allows for builds only to be can if a repository collaborator
+comments on the PR with <code>/gcbrun</code>, preventing unwanted builds to be ran in your
+project unless they have been vetted by a collaborator.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>name: <span style=color:#e6db74>&#34;github-pr&#34;</span>
+github:
+  owner: <span style=color:#e6db74>&#34;wlynch&#34;</span>
+  name: <span style=color:#e6db74>&#34;test&#34;</span>
+  pull_request:
+    comment_control: <span style=color:#e6db74>&#34;COMMENTS_ENABLED&#34;</span>
+    branch: <span style=color:#e6db74>&#34;.*&#34;</span>
+filename: <span style=color:#e6db74>&#34;cloudbuild.yaml&#34;</span></code></pre></div><h3 id=push-to-csr-repo-ignore-changes-to-docs>Push to CSR repo, ignore changes to <code>docs/</code></h3><p>This trigger allows you to skip builds if there have only been changes to files
+under the <code>docs/</code> directory.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>name: <span style=color:#e6db74>&#34;push-ignore-doc&#34;</span>
+trigger_template:
+  repo_name: <span style=color:#e6db74>&#34;test&#34;</span>
+  branch_name: <span style=color:#e6db74>&#34;.*&#34;</span>
+ignored_files:
+  - <span style=color:#e6db74>&#34;docs/**&#34;</span>
+build:
+  steps:
+    - name: <span style=color:#e6db74>&#34;gcr.io.cloud-builders.docker&#34;</span>
+      args:
+        - <span style=color:#e6db74>&#34;build&#34;</span>
+        - <span style=color:#e6db74>&#34;-t&#34;</span>
+        - <span style=color:#e6db74>&#34;gcr.io/wlynch-test/test:$COMMIT_SHA&#34;</span>
+        - <span style=color:#e6db74>&#34;.&#34;</span>
+  images:
+    - <span style=color:#e6db74>&#34;gcr.io/wlynch-test/test:$COMMIT_SHA&#34;</span></code></pre></div><h3 id=multiple-configs-per-file>Multiple configs per file</h3><p>This trigger specifies multiple triggers in a single file.</p><p>Configs are evaluated sequentially, so if multiple configs share the same
+identifier (i.e.. <code>trigger.id</code> or <code>trigger.name</code>), then the last one will win.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>name: <span style=color:#e6db74>&#34;github-push&#34;</span>
+github:
+  owner: <span style=color:#e6db74>&#34;wlynch&#34;</span>
+  name: <span style=color:#e6db74>&#34;test&#34;</span>
+  push:
+    branch: <span style=color:#e6db74>&#34;^master$&#34;</span>
+filename: <span style=color:#e6db74>&#34;cloudbuild.yaml&#34;</span>
+---
+name: <span style=color:#e6db74>&#34;github-pr&#34;</span>
+github:
+  owner: <span style=color:#e6db74>&#34;wlynch&#34;</span>
+  name: <span style=color:#e6db74>&#34;test&#34;</span>
+  pull_request:
+    comment_control: <span style=color:#e6db74>&#34;COMMENTS_ENABLED&#34;</span>
+    branch: <span style=color:#e6db74>&#34;.*&#34;</span>
+filename: <span style=color:#e6db74>&#34;cloudbuild.yaml&#34;</span></code></pre></div><h3 id=json-configuration>JSON Configuration</h3><p>This trigger config specifies the trigger as JSON instead of YAML.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;github-pr&#34;</span>,
+  <span style=color:#f92672>&#34;github&#34;</span>: {
+    <span style=color:#f92672>&#34;owner&#34;</span>: <span style=color:#e6db74>&#34;wlynch&#34;</span>,
+    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;test&#34;</span>,
+    <span style=color:#f92672>&#34;push&#34;</span>: {
+      <span style=color:#f92672>&#34;branch&#34;</span>: <span style=color:#e6db74>&#34;.*&#34;</span>
+    }
+  },
+  <span style=color:#f92672>&#34;filename&#34;</span>: <span style=color:#e6db74>&#34;cloudbuild.yaml&#34;</span>
+}</code></pre></div><h2 id=related-docs>Related Docs</h2><ul><li><a href=https://cloud.google.com/cloud-build/docs/api/reference/rest/v1/projects.triggers#BuildTrigger>Cloud Build Triggers API</a></li><li><a href=https://cloud.google.com/sdk/gcloud/reference/beta/builds/triggers/>Cloud Builds Triggers gcloud CLI</a></li></ul></div></main><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-51544701-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
