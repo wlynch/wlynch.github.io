@@ -15,5 +15,4 @@ pygmentsCodeFences = true
 [Menus]
   main = [
       {Name = "GitHub", URL = "https://github.com/wlynch"},
-      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/wflynch"}
   ]
